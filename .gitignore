@@ -87,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# my ignore
+programmers_guide/ckpt/*
+!programmers_guide/ckpt/.keep
