@@ -4,8 +4,8 @@ import tensorflow as tf
 checkpoint_dir = os.path.join(os.path.dirname(__file__), 'ckpt')
 checkpoint_path = os.path.join(checkpoint_dir, 'model.ckpt')
 
-a = tf.Variable([0, 1, 2, 3, 4, 5], tf.float32)
-b = tf.Variable([0, 1, 2, 3, 4, 5], tf.float32)
+a = tf.Variable([0, 1, 2, 3, 4, 5], tf.float32, name='a')
+b = tf.Variable([0, 1, 2, 3, 4, 5], tf.float32, name='b')
 c = tf.add(a, b)
 update_op = tf.assign(a, c)
 
