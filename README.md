@@ -1,2 +1,2 @@
 # tensorlow-practice
-My TensorFlow practice.
+My TensorFlow r1.0 practice.
