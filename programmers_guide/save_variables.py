@@ -24,4 +24,4 @@ with tf.Session() as sess:
 
         if step % 9 == 0:
             print('step: ', step)
-            saver.save(sess, checkpoint_path, global_step=step)
+            saver.save(sess, checkpoint_path)
