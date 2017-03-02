@@ -91,3 +91,4 @@ ENV/
 # my ignore
 programmers_guide/ckpt/*
 !programmers_guide/ckpt/.keep
+programmers_guide/coordinator.txt
