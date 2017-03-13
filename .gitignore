@@ -94,3 +94,10 @@ get_started/logs/*
 programmers_guide/ckpt/*
 !programmers_guide/ckpt/.keep
 programmers_guide/coordinator.txt
+tutorials/data/*
+!tutorials/data/.keep
+tutorials/data/*
+!tutorials/data/.keep
+tutorials/logs/*
+!tutorials/logs/.keep
+tutorials/logs_wiki_ja/*
