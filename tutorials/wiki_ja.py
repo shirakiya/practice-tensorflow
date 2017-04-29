@@ -1,18 +1,22 @@
+import argparse
 import os
 import re
 import shlex
 import subprocess
 import MeCab
 
+neologd_filename = 'mecab-ipadic-neologd'
 res = subprocess.run(shlex.split('mecab-config --dicdir'),
                      stdout=subprocess.PIPE,
                      universal_newlines=True)
 mecab_dicdir = res.stdout.strip()
 
-if os.path.exists(os.path.join(mecab_dicdir, 'mecab-ipadic-neologd')):
-    mecab = MeCab.Tagger('-d {}/mecab-ipadic-neologd -O wakati'.format(mecab_dicdir))
+if os.path.exists(os.path.join(mecab_dicdir, neologd_filename)):
+    option = '-d {}/{} -O wakati'.format(mecab_dicdir, neologd_filename)
 else:
-    mecab = MeCab.Tagger('-d {}/ipadic -O wakati'.format(mecab_dicdir))
+    option = '-d {}/ipadic -O wakati'.format(mecab_dicdir)
+
+mecab = MeCab.Tagger(option)
 
 
 def tokenize(text):
@@ -60,9 +64,18 @@ def create_corpus(input_path, output_path, is_wiki=False):
     output_file.close()
 
 
-if __name__ == '__main__':
+def main(input_path='wiki.txt', output_file='wiki_tokenized.txt', is_wiki=True):
     data_dir = os.path.join(os.path.dirname(__file__), 'data')
-    wiki_path = os.path.join(data_dir, 'wiki.txt')
-    output_path = os.path.join(data_dir, 'wiki_tokenized.txt')
+    wiki_path = os.path.join(data_dir, input_path)
+    output_path = os.path.join(data_dir, output_file)
 
-    create_corpus(wiki_path, output_path, is_wiki=True)
+    create_corpus(wiki_path, output_path, is_wiki=is_wiki)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input-path', type=str, default='wiki.txt')
+    parser.add_argument('--output-file', type=str, default='wiki_tokenized.txt')
+    option = parser.parse_args()
+
+    main(option.input_path, option.output_file, is_wiki=True)
