@@ -96,3 +96,4 @@ ENV/
 **/data/*
 !**/data/.keep
 programmers_guide/coordinator.txt
+tutorials/recurrent_neural_networks/simple-examples
